@@ -1,0 +1,14 @@
+{% extends 'portfolio/base.html' %}
+{% block title %}
+    Alle blogs
+{% endblock %}
+
+{% block content %}
+    <h1>Blog</h1>
+    <h3>Mads har skrevet {{ count }} {% if 1 == "{{ count }}" %}blog{% else %}blogs{% endif %}</h3>
+    {% for blog in blogs %}
+        <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+        {{ blog.createdate| date:'M d Y'| upper }}
+        <p>{{ blog.description | striptags | truncatechars:100 }}</p>
+    {% endfor %}
+{% endblock %}
